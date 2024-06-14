@@ -47,7 +47,6 @@ class PlayerSelectionFrame extends JFrame {
     private JComboBox<String> player1ColorComboBox;
     private JTextField player2NameField;
     private JComboBox<String> player2ColorComboBox;
-    private JTextArea outputArea;
 
     public PlayerSelectionFrame() {
         setTitle("Player Selection");
@@ -62,19 +61,15 @@ class PlayerSelectionFrame extends JFrame {
         JLabel player1NameLabel = new JLabel("Player 1 Name:");
         player1NameField = new JTextField(10);
         JLabel player1ColorLabel = new JLabel("Player 1 Color:");
-        player1ColorComboBox = new JComboBox<>(new String[]{"Yellow", "Red", "Green", "Blue"});
+        player1ColorComboBox = new JComboBox<>(new String[]{"Red", "Yellow", "Green", "Blue"});
 
         JLabel player2NameLabel = new JLabel("Player 2 Name:");
         player2NameField = new JTextField(10);
         JLabel player2ColorLabel = new JLabel("Player 2 Color:");
-        player2ColorComboBox = new JComboBox<>(new String[]{"Purple", "Black", "Pink", "Teal"});
+        player2ColorComboBox = new JComboBox<>(new String[]{"Red", "Yellow", "Green", "Blue"});
 
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(new SubmitButtonListener());
-
-        outputArea = new JTextArea(5, 30);
-        outputArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(outputArea);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -122,6 +117,11 @@ class PlayerSelectionFrame extends JFrame {
             String player2Name = player2NameField.getText();
             String player2Color = (String) player2ColorComboBox.getSelectedItem();
 
+            if (player1Name.equalsIgnoreCase(player2Name)) {
+                JOptionPane.showMessageDialog(PlayerSelectionFrame.this, "Player 2 must choose a different name than Player 1.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             if (player1Color.equalsIgnoreCase(player2Color)) {
                 JOptionPane.showMessageDialog(PlayerSelectionFrame.this, "Player 2 must choose a different color than Player 1.", "Input Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -130,10 +130,10 @@ class PlayerSelectionFrame extends JFrame {
             Player.Players player1 = new Player.Players(player1Name, player1Color);
             Player.Players player2 = new Player.Players(player2Name, player2Color);
 
-            outputArea.setText("");
-            outputArea.append("Player 1: " + player1 + "\n");
-            outputArea.append("Player 2: " + player2 + "\n");
+            System.out.println(player1);
+            System.out.println(player2);
         }
     }
 }
+
 

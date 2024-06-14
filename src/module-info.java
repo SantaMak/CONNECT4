@@ -4,6 +4,6 @@
 /**
  * 
  */
-module CONNECT_4 {
+module CONNECT4 {
 	requires java.desktop;
 }
