@@ -9,8 +9,9 @@ public class Player {
     public static class Players {
         private String name;
         private String color;
+        private int score;
 
-        public Players(String name, String color) {
+        public Players(String name, String color, int score) {
             this.name = name;
             this.color = color;
         }
@@ -33,7 +34,7 @@ public class Player {
 
         @Override
         public String toString() {
-            return "Players{name='" + name + "', color='" + color + "'}";
+            return "Players{name='" + name + "', color='" + color + "', score='" + score + "'}";
         }
     }
 
@@ -116,6 +117,8 @@ class PlayerSelectionFrame extends JFrame {
             String player1Color = (String) player1ColorComboBox.getSelectedItem();
             String player2Name = player2NameField.getText();
             String player2Color = (String) player2ColorComboBox.getSelectedItem();
+            int score1 = 0;
+            int score2 = 0;
 
             if (player1Name.equalsIgnoreCase(player2Name)) {
                 JOptionPane.showMessageDialog(PlayerSelectionFrame.this, "Player 2 must choose a different name than Player 1.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -127,8 +130,8 @@ class PlayerSelectionFrame extends JFrame {
                 return;
             }
 
-            Player.Players player1 = new Player.Players(player1Name, player1Color);
-            Player.Players player2 = new Player.Players(player2Name, player2Color);
+            Player.Players player1 = new Player.Players(player1Name, player1Color, score1);
+            Player.Players player2 = new Player.Players(player2Name, player2Color, score2);
 
             System.out.println(player1);
             System.out.println(player2);
